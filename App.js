@@ -5,8 +5,14 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.innerBox}>
-        <Text style={styles.text}>Hallo ;)</Text>
-        <TextInput style={styles.button} textAlign={"center"}></TextInput>
+        <Text style={styles.text}>Реєстрація</Text>
+        <TextInput
+          style={styles.input}
+          textAlign={"center"}
+          placeholder="Login"
+        ></TextInput>
+        <TextInput style={styles.input} textAlign={"center"}></TextInput>
+        <TextInput style={styles.input} textAlign={"center"}></TextInput>
       </View>
       <StatusBar style="auto" />
     </View>
@@ -33,15 +39,17 @@ const styles = StyleSheet.create({
     width: 300,
   },
   text: {
-    fontSize: 30,
+    fontSize: 25,
     textAlign: "center",
+    marginBottom: 10,
   },
-  button: {
+  input: {
     borderRadius: 6,
     backgroundColor: "white",
-    color: "white",
+    color: "red",
     fontSize: 20,
     // textAlign: "center",
     marginHorizontal: 20,
+    marginBottom: 10,
   },
 });
