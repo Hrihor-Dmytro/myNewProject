@@ -1,20 +1,31 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <View style={styles.innerBox}>
-        <Text style={styles.text}>Реєстрація</Text>
-        <TextInput
-          style={styles.input}
-          textAlign={"center"}
-          placeholder="Login"
-        ></TextInput>
-        <TextInput style={styles.input} textAlign={"center"}></TextInput>
-        <TextInput style={styles.input} textAlign={"center"}></TextInput>
-      </View>
-      <StatusBar style="auto" />
+      <ImageBackground source={require("./images/1.jpg")} style={styles.image}>
+        <View style={styles.innerBox}>
+          <Text style={styles.text}>Реєстрація</Text>
+          <TextInput
+            style={styles.input}
+            textAlign={"center"}
+            placeholder="Login"
+          ></TextInput>
+          <TextInput
+            style={styles.input}
+            textAlign={"center"}
+            placeholder="Password"
+          ></TextInput>
+        </View>
+        <StatusBar style="auto" />
+      </ImageBackground>
     </View>
   );
 }
@@ -51,5 +62,10 @@ const styles = StyleSheet.create({
     // textAlign: "center",
     marginHorizontal: 20,
     marginBottom: 10,
+  },
+  image: {
+    flex: 1,
+    justifyContent: "center",
+    resizeMode: "cover",
   },
 });
