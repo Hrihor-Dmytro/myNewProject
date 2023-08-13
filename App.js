@@ -11,6 +11,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   KeyboardAvoidingView,
+  TouchableOpacity,
 } from "react-native";
 
 export default function App() {
@@ -36,12 +37,12 @@ export default function App() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS == "ios" ? "padding" : "height"}
+        <ImageBackground
+          source={require("./images/1.png")}
+          style={styles.image}
         >
-          <ImageBackground
-            source={require("./images/1.png")}
-            style={styles.image}
+          <KeyboardAvoidingView
+            behavior={Platform.OS == "ios" ? "padding" : "height"}
           >
             <View style={styles.innerBox}>
               <Text style={styles.text}>Реєстрація</Text>
@@ -60,18 +61,26 @@ export default function App() {
                 style={styles.input}
                 placeholder="Пароль"
                 onChangeText={inputPassword}
+                secureTextEntry={true}
               ></TextInput>
-              <Button
+              {/* <Button
                 title="Зарееструватися"
                 color="#FF6C00"
                 accessibilityLabel="Learn more about this purple button"
                 // onPress={() => Alert.alert("Simple Button pressed")}
                 onPress={onLogin}
-              />
+              /> */}
+              <TouchableOpacity
+                style={styles.button}
+                activeOpacity={0.6}
+                onPress={onLogin}
+              >
+                <Text style={styles.btnText}>Зарееструватися</Text>
+              </TouchableOpacity>
             </View>
             <StatusBar style="auto" />
-          </ImageBackground>
-        </KeyboardAvoidingView>
+          </KeyboardAvoidingView>
+        </ImageBackground>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -86,15 +95,18 @@ const styles = StyleSheet.create({
     backgroundColor: "silver",
   },
   innerBox: {
-    borderWidth: 1,
-    borderColor: "black",
-    padding: 20,
+    borderColor: "red",
+    borderWidth: 3,
+    // borderColor: "black",
+    // padding: 20,
     paddingLeft: 40,
     paddingRight: 40,
-    borderRadius: 10,
-    backgroundColor: "white",
-    width: 390,
-    height: 300,
+    // borderRadius: 10,
+    // backgroundColor: "white",
+    // width: 390,
+    // height: 300,
+    marginBottom: 100,
+    marginHorizontal: 1,
   },
   text: {
     fontSize: 25,
@@ -114,13 +126,20 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
+    // justifyContent: "flex-end",
     justifyContent: "center",
     resizeMode: "stretch",
     width: 390,
   },
   button: {
-    borderColor: "#E8E8E8",
+    marginTop: 10,
     borderRadius: 50,
-    backgroundColor: "FF6C00",
+    backgroundColor: "#FF6C00",
+    height: 45,
+  },
+  btnText: {
+    textAlign: "center",
+    fontSize: 25,
+    paddingTop: 5,
   },
 });
