@@ -42,7 +42,7 @@ export default function App() {
           style={styles.image}
         >
           <KeyboardAvoidingView
-            behavior={Platform.OS == "ios" ? "padding" : "height"}
+            behavior={Platform.OS == "ios" ? "padding" : "height:100"}
           >
             <View style={styles.innerBox}>
               <Text style={styles.text}>Реєстрація</Text>
@@ -90,23 +90,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    // alignItems: "center",
+    // justifyContent: "center",
     backgroundColor: "silver",
   },
   innerBox: {
-    borderColor: "red",
-    borderWidth: 3,
-    // borderColor: "black",
-    // padding: 20,
+    borderWidth: 1,
     paddingLeft: 40,
     paddingRight: 40,
-    // borderRadius: 10,
-    // backgroundColor: "white",
-    // width: 390,
-    // height: 300,
-    marginBottom: 100,
-    marginHorizontal: 1,
+    borderRadius: 10,
+    backgroundColor: "white",
+
+    paddingBottom: 20,
+    // marginHorizontal: 1,
   },
   text: {
     fontSize: 25,
@@ -126,10 +122,10 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    // justifyContent: "flex-end",
-    justifyContent: "center",
+    justifyContent: "flex-end",
+    // justifyContent: "center",
     resizeMode: "stretch",
-    width: 390,
+    // width: 390,
   },
   button: {
     marginTop: 10,
