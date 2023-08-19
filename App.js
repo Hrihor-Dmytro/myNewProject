@@ -1,7 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+// import { AppLoading } from "expo";
+import { useFonts } from "expo-font";
 import {
-  Button,
   ImageBackground,
   StyleSheet,
   Text,
@@ -14,28 +15,71 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+// import * as Font from "expo-font";
+
+// const loadFonts = async () => {
+//   return await Font.loadAsync({
+//     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
+//     "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+//   });
+// };
+
 export default function App() {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [isShowKeyboard, setisShowKeyboard] = useState(false);
 
-  // console.log(login);
-  // console.log(password);
+  const [fontsLoaded] = useFonts({
+    "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
 
   const data = {
     login,
     password,
+    email,
   };
-  console.log(data);
+  // console.log(data);
 
   const inputLogin = (text) => setLogin(text);
   const inputPassword = (text) => setPassword(text);
+  const inputEmail = (text) => setEmail(text);
 
   const onLogin = () => {
-    Alert.alert("Собрал перед отправкой", `${login} ${password}`);
+    console.log(data);
+    // Alert.alert("Собрал перед отправкой", `${login} ${password} ${email}`);
+    setEmail("");
+    setLogin("");
+    setPassword("");
   };
 
+  const keybordDismiss = () => {
+    setisShowKeyboard(false);
+    Keyboard.dismiss();
+  };
+
+  // if (!isReady) {
+  //   return (
+  //     <AppLoading
+  //       startAsync={loadFonts}
+  //       onFinish={() => setIsReady(true)}
+  //       onError={(err) => console.log(err)}
+  //     />
+  //   );
+  // }
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback onPress={keybordDismiss}>
       <View style={styles.container}>
         <ImageBackground
           source={require("./images/1.png")}
@@ -44,17 +88,27 @@ export default function App() {
           <KeyboardAvoidingView
             behavior={Platform.OS == "ios" ? "padding" : "height:100"}
           >
-            <View style={styles.innerBox}>
+            <View
+              style={{
+                ...styles.innerBox,
+                paddingBottom: isShowKeyboard ? 20 : 60,
+              }}
+              onLayout={onLayoutRootView}
+            >
               <Text style={styles.text}>Реєстрація</Text>
               <TextInput
                 value={login}
                 style={styles.input}
                 placeholder="Логін"
                 onChangeText={inputLogin}
+                onFocus={() => setisShowKeyboard(true)}
               ></TextInput>
               <TextInput
+                value={email}
                 style={styles.input}
                 placeholder="Адреса електронної пошти"
+                onChangeText={inputEmail}
+                onFocus={() => setisShowKeyboard(true)}
               ></TextInput>
               <TextInput
                 value={password}
@@ -62,14 +116,8 @@ export default function App() {
                 placeholder="Пароль"
                 onChangeText={inputPassword}
                 secureTextEntry={true}
+                onFocus={() => setisShowKeyboard(true)}
               ></TextInput>
-              {/* <Button
-                title="Зарееструватися"
-                color="#FF6C00"
-                accessibilityLabel="Learn more about this purple button"
-                // onPress={() => Alert.alert("Simple Button pressed")}
-                onPress={onLogin}
-              /> */}
               <TouchableOpacity
                 style={styles.button}
                 activeOpacity={0.6}
@@ -98,21 +146,24 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingLeft: 40,
     paddingRight: 40,
-    borderRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
     backgroundColor: "white",
 
     paddingBottom: 20,
     // marginHorizontal: 1,
   },
   text: {
+    fontFamily: "Roboto-Bold",
     fontSize: 25,
     textAlign: "center",
     marginBottom: 10,
+    marginTop: 10,
   },
   input: {
     borderRadius: 6,
     backgroundColor: "#E8E8E8",
-    width: 315,
+    // width: 315,
     height: 44,
     padding: 10,
     borderWidth: 1,
@@ -129,9 +180,10 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 10,
+    paddingTop: 5,
+    paddingBottom: 8,
     borderRadius: 50,
     backgroundColor: "#FF6C00",
-    height: 45,
   },
   btnText: {
     textAlign: "center",
