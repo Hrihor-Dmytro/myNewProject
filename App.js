@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
-import { useCallback, useState } from "react";
-// import { AppLoading } from "expo";
+import { useCallback, useEffect, useState } from "react";
 import { useFonts } from "expo-font";
+// import * as SplashScreen from "expo-splash-screen";
 import {
   ImageBackground,
   StyleSheet,
@@ -13,30 +13,39 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
-
-// import * as Font from "expo-font";
-
-// const loadFonts = async () => {
-//   return await Font.loadAsync({
-//     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
-//     "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
-//   });
-// };
 
 export default function App() {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [isShowKeyboard, setisShowKeyboard] = useState(false);
+  // const [dimensions, setDimensions] = useState(Dimensions.get("window").width);
+
+  // const [dimensions, setDimensions] = useState({
+  //   window: windowDimensions,
+  //   screen: screenDimensions,
+  // });
+  // const windowDimensions = Dimensions.get("window");
+  // const screenDimensions = Dimensions.get("screen");
+  // useEffect(() => {
+  //   const subscription = Dimensions.addEventListener(
+  //     "change",
+  //     ({ window, screen }) => {
+  //       setDimensions({ window, screen });
+  //     }
+  //   );
+  //   return () => subscription?.remove();
+  // });
 
   const [fontsLoaded] = useFonts({
     "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+    "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
-      await SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
 
@@ -45,7 +54,6 @@ export default function App() {
     password,
     email,
   };
-  // console.log(data);
 
   const inputLogin = (text) => setLogin(text);
   const inputPassword = (text) => setPassword(text);
@@ -64,15 +72,16 @@ export default function App() {
     Keyboard.dismiss();
   };
 
-  // if (!isReady) {
-  //   return (
-  //     <AppLoading
-  //       startAsync={loadFonts}
-  //       onFinish={() => setIsReady(true)}
-  //       onError={(err) => console.log(err)}
-  //     />
-  //   );
-  // }
+  // useEffect(() => {
+  //   const onChenge = () => {
+  //     const width = Dimensions.get("window").width - 20 * 2;
+  //     console.log(width);
+  //   };
+  //   Dimensions.addEventListener("change", onChenge);
+  //   return () => {
+  //     Dimensions.removeEventListener("change", onChenge);
+  //   };
+  // }, [dimensions]);
 
   if (!fontsLoaded) {
     return null;
@@ -80,7 +89,7 @@ export default function App() {
 
   return (
     <TouchableWithoutFeedback onPress={keybordDismiss}>
-      <View style={styles.container}>
+      <View style={styles.container} onLayout={onLayoutRootView}>
         <ImageBackground
           source={require("./images/1.png")}
           style={styles.image}
@@ -92,8 +101,8 @@ export default function App() {
               style={{
                 ...styles.innerBox,
                 paddingBottom: isShowKeyboard ? 20 : 60,
+                // width: dimensions,
               }}
-              onLayout={onLayoutRootView}
             >
               <Text style={styles.text}>Реєстрація</Text>
               <TextInput
@@ -149,6 +158,8 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     backgroundColor: "white",
+    // fontFamily: "Roboto-Regular",
+    // marginHorizontal: 20,
 
     paddingBottom: 20,
     // marginHorizontal: 1,
@@ -161,6 +172,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   input: {
+    fontFamily: "Roboto-Regular",
     borderRadius: 6,
     backgroundColor: "#E8E8E8",
     // width: 315,
@@ -177,6 +189,7 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     resizeMode: "stretch",
     // width: 390,
+    alignItems: "center",
   },
   button: {
     marginTop: 10,
@@ -186,6 +199,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FF6C00",
   },
   btnText: {
+    fontFamily: "Roboto-Regular",
     textAlign: "center",
     fontSize: 25,
     paddingTop: 5,
