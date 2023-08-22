@@ -4,5 +4,5 @@ import { RegistrationScreen } from "./screens/registrationScreen/RegistrationScr
 import { Text, View, ImageBackground } from "react-native";
 
 export default function App() {
-  return <LoginScrean />;
+  return <RegistrationScreen />;
 }

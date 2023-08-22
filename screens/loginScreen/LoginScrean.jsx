@@ -1,52 +1,89 @@
-import { ImageBackground, TextInput, TouchableOpacity } from "react-native";
-import { View, Text } from "react-native";
+import {
+  ImageBackground,
+  KeyboardAvoidingView,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  useWindowDimensions,
+} from "react-native";
+import { View, Text, Keyboard } from "react-native";
 import { styles } from "../registrationScreen/RegistrationScreenStyled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const datalogin = {
   email: "",
   password: "",
 };
 
-// console.log(datalogin);
-
 export const LoginScrean = () => {
   const [data, setData] = useState(datalogin);
+  const [isShowKeyboard, setisShowKeyboard] = useState(false);
+  const [stylesWidsh, setStyles] = useState(styles.stylesS);
 
-  const onDataLogin = (login, password) => {
-    console.log(login, password);
+  const { width } = useWindowDimensions();
+
+  useEffect(() => {
+    if (0 <= width && width < 540) {
+      setStyles(styles.stylesS);
+    } else if (540 <= width && width < 992) {
+      setStyles(styles.stylesM);
+    }
+  }, [width]);
+
+  const keybordDismiss = (datalogin) => {
+    setData(datalogin);
+    setisShowKeyboard(false);
+    Keyboard.dismiss();
+    console.log(data);
   };
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={require("../../images/1.png")}
-        style={styles.image}
-      >
-        <View style={styles.innerBox}>
-          <Text style={styles.text}>Увійти</Text>
-          <TextInput
-            placeholder="login"
-            style={{ ...styles.input }}
-          ></TextInput>
-          <TextInput
-            // value={password}
-            style={{ ...styles.input }}
-            placeholder="Пароль"
-            // onChangeText={inputPassword}
-            secureTextEntry={true}
-            // onFocus={() => setisShowKeyboard(true)}
-          ></TextInput>
-          <TouchableOpacity
-            style={styles.button}
-            activeOpacity={0.6}
-            // onPress={onLogin}
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <ImageBackground
+          source={require("../../images/1.png")}
+          style={styles.image}
+        >
+          <KeyboardAvoidingView
+            behavior={Platform.OS == "ios" ? "padding" : "height:100"}
           >
-            <Text style={styles.btnText}>Увійти</Text>
-          </TouchableOpacity>
-          <Text style={styles.registrText}>Немає акаунту? Зареєструватися</Text>
-        </View>
-      </ImageBackground>
-    </View>
+            <View
+              style={{
+                ...styles.innerBox,
+                ...stylesWidsh,
+                paddingBottom: isShowKeyboard ? 20 : 60,
+              }}
+            >
+              <Text style={styles.text}>Увійти</Text>
+              <TextInput
+                value={data.email}
+                placeholder="login"
+                style={{ ...styles.input }}
+                onChangeText={(value) => setData({ ...data, email: value })}
+                onFocus={() => setisShowKeyboard(true)}
+              ></TextInput>
+              <TextInput
+                value={data.password}
+                style={{ ...styles.input }}
+                placeholder="Пароль"
+                onChangeText={(value) => setData({ ...data, password: value })}
+                secureTextEntry={true}
+                onFocus={() => setisShowKeyboard(true)}
+              ></TextInput>
+              <TouchableOpacity
+                style={styles.button}
+                activeOpacity={0.6}
+                onPress={keybordDismiss}
+              >
+                <Text style={styles.btnText}>Увійти</Text>
+              </TouchableOpacity>
+              <Text style={styles.registrText}>
+                Немає акаунту? Зареєструватися
+              </Text>
+            </View>
+          </KeyboardAvoidingView>
+        </ImageBackground>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
