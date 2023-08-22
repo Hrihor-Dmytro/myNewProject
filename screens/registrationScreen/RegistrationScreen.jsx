@@ -18,8 +18,7 @@ import {
 import SVG from "../../images/plus.svg";
 
 SplashScreen.preventAutoHideAsync();
-
-export const RegistrationScreen = () => {
+const RegistrationScreen = ({ navigation }) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -122,7 +121,12 @@ export const RegistrationScreen = () => {
               >
                 <Text style={styles.btnText}>Зарееструватися</Text>
               </TouchableOpacity>
-              <Text style={styles.registrText}>Вже є акаунт? Увійти</Text>
+              <Text
+                style={styles.registrText}
+                onPress={() => navigation.navigate("Login")}
+              >
+                Вже є акаунт? Увійти
+              </Text>
             </View>
 
             <StatusBar style="auto" />
@@ -132,3 +136,5 @@ export const RegistrationScreen = () => {
     </TouchableWithoutFeedback>
   );
 };
+
+export default RegistrationScreen;

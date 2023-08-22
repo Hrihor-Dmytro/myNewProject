@@ -12,6 +12,7 @@ import { View, Text, Keyboard } from "react-native";
 import { styles } from "../registrationScreen/RegistrationScreenStyled";
 import { useCallback, useEffect, useState } from "react";
 import { useFonts } from "expo-font";
+import { log } from "react-native-reanimated";
 
 const datalogin = {
   email: "",
@@ -20,7 +21,7 @@ const datalogin = {
 
 SplashScreen.preventAutoHideAsync();
 
-export const LoginScrean = () => {
+export const LoginScrean = ({ navigation }) => {
   const [data, setData] = useState(datalogin);
   const [isShowKeyboard, setisShowKeyboard] = useState(false);
   const [stylesWidsh, setStyles] = useState(styles.stylesS);
@@ -49,9 +50,7 @@ export const LoginScrean = () => {
     setData(datalogin);
     setisShowKeyboard(false);
     Keyboard.dismiss();
-    // console.log(data);
   };
-  console.log(data);
 
   if (!fontsLoaded) {
     return null;
@@ -97,7 +96,10 @@ export const LoginScrean = () => {
               >
                 <Text style={styles.btnText}>Увійти</Text>
               </TouchableOpacity>
-              <Text style={styles.registrText}>
+              <Text
+                style={styles.registrText}
+                onPress={() => navigation.navigate("Registration")}
+              >
                 Немає акаунту? Зареєструватися
               </Text>
             </View>

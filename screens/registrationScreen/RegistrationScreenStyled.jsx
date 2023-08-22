@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   stylesS: {
-    width: 370,
+    width: 390,
   },
   stylesM: {
     width: 560,
