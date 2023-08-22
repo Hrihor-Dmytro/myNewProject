@@ -1,3 +1,4 @@
+import * as SplashScreen from "expo-splash-screen";
 import {
   ImageBackground,
   KeyboardAvoidingView,
@@ -6,19 +7,33 @@ import {
   TouchableWithoutFeedback,
   useWindowDimensions,
 } from "react-native";
+
 import { View, Text, Keyboard } from "react-native";
 import { styles } from "../registrationScreen/RegistrationScreenStyled";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useFonts } from "expo-font";
 
 const datalogin = {
   email: "",
   password: "",
 };
 
+SplashScreen.preventAutoHideAsync();
+
 export const LoginScrean = () => {
   const [data, setData] = useState(datalogin);
   const [isShowKeyboard, setisShowKeyboard] = useState(false);
   const [stylesWidsh, setStyles] = useState(styles.stylesS);
+  const [fontsLoaded] = useFonts({
+    "Roboto-Bold": require("../../assets/fonts/Roboto-Bold.ttf"),
+    "Roboto-Regular": require("../../assets/fonts/Roboto-Regular.ttf"),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
 
   const { width } = useWindowDimensions();
 
@@ -37,9 +52,13 @@ export const LoginScrean = () => {
     console.log(data);
   };
 
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.container}>
+      <View style={styles.container} onLayout={onLayoutRootView}>
         <ImageBackground
           source={require("../../images/1.png")}
           style={styles.image}

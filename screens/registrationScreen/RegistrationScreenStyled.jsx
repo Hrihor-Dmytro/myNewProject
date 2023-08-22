@@ -12,8 +12,10 @@ export const styles = StyleSheet.create({
       padding: 3,
       fontSize: 20,
     },
+    posychionM: {
+      left: "46%",
+    },
   },
-
   container: {
     flex: 1,
     backgroundColor: "#fff",
@@ -37,6 +39,7 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 10,
     marginTop: 10,
+    paddingTop: 40,
   },
   input: {
     fontFamily: "Roboto-Regular",
@@ -73,5 +76,14 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     color: "#1B4371",
     marginTop: 10,
+  },
+  avatar: {
+    backgroundColor: "white",
+    width: 120,
+    height: 120,
+    borderRadius: 8,
+    position: "absolute",
+    top: -80,
+    left: "43%",
   },
 });

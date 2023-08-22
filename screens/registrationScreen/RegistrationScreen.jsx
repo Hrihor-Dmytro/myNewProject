@@ -2,8 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-
-import { useWindowDimensions } from "react-native";
+import { styles } from "./RegistrationScreenStyled.jsx";
 import {
   ImageBackground,
   Text,
@@ -13,9 +12,10 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   TouchableOpacity,
+  useWindowDimensions,
 } from "react-native";
 
-import { styles } from "./RegistrationScreenStyled.jsx";
+import SVG from "../../images/plus.svg";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -89,6 +89,9 @@ export const RegistrationScreen = () => {
                 paddingBottom: isShowKeyboard ? 20 : 60,
               }}
             >
+              <View style={{ ...styles.avatar, ...stylesWidsh.posychionM }}>
+                {/* <SVG width="100%" height="70%" /> */}
+              </View>
               <Text style={styles.text}>Реєстрація</Text>
               <TextInput
                 value={login}
