@@ -49,8 +49,9 @@ export const LoginScrean = () => {
     setData(datalogin);
     setisShowKeyboard(false);
     Keyboard.dismiss();
-    console.log(data);
+    // console.log(data);
   };
+  console.log(data);
 
   if (!fontsLoaded) {
     return null;
