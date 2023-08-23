@@ -12,7 +12,6 @@ import { View, Text, Keyboard } from "react-native";
 import { styles } from "../registrationScreen/RegistrationScreenStyled";
 import { useCallback, useEffect, useState } from "react";
 import { useFonts } from "expo-font";
-import { log } from "react-native-reanimated";
 
 const datalogin = {
   email: "",
@@ -50,6 +49,7 @@ export const LoginScrean = ({ navigation }) => {
     setData(datalogin);
     setisShowKeyboard(false);
     Keyboard.dismiss();
+    navigation.navigate("PostScrean");
   };
 
   if (!fontsLoaded) {
