@@ -2,29 +2,7 @@ import React from "react";
 import { Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-
-function Settings() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
-
-function Profile() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Profile!</Text>
-    </View>
-  );
-}
-function Add() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Add!</Text>
-    </View>
-  );
-}
+import { Add } from "./createPostsScreen/createPostScrean";
 
 const Tabs = createBottomTabNavigator();
 
@@ -34,13 +12,12 @@ export const Home = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
+
           if (route.name === "Profile") {
-            iconName = "add-outline";
-          }
-          if (route.name === "Settings") {
-            iconName = "add-outline";
-          }
-          if (route.name === "Add") {
+            iconName = focused ? "person-outline" : "add-outline";
+          } else if (route.name === "Settings") {
+            iconName = focused ? "person-outline" : "add-outline";
+          } else if (route.name === "Add") {
             iconName = "add-outline";
           }
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -57,6 +34,3 @@ export const Home = () => {
     </Tabs.Navigator>
   );
 };
-<ion-icon name="alert-circle-outline"></ion-icon>;
-<ion-icon name="person-outline"></ion-icon>;
-<ion-icon name="grid-outline"></ion-icon>;

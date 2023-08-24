@@ -9,10 +9,10 @@ import {
 } from "react-native";
 
 import { View, Text, Keyboard } from "react-native";
-import { styles } from "../registrationScreen/RegistrationScreenStyled";
+import { styles } from "./RegistrationScreenStyled";
 import { useCallback, useEffect, useState } from "react";
 import { useFonts } from "expo-font";
-import { Home } from "../home/Home";
+import { Home } from "../homeScrean/Home";
 
 const datalogin = {
   email: "",

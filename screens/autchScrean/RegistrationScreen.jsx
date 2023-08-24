@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { styles } from "./RegistrationScreenStyled.jsx";
+import { styles } from "./RegistrationScreenStyled";
 import {
   ImageBackground,
   Text,
@@ -15,10 +15,8 @@ import {
   useWindowDimensions,
 } from "react-native";
 
-import SVG from "../../images/plus.svg";
-
 SplashScreen.preventAutoHideAsync();
-const RegistrationScreen = ({ navigation }) => {
+export const RegistrationScreen = ({ navigation }) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -136,5 +134,3 @@ const RegistrationScreen = ({ navigation }) => {
     </TouchableWithoutFeedback>
   );
 };
-
-export default RegistrationScreen;
