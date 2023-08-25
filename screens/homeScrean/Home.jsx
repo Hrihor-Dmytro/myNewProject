@@ -18,9 +18,9 @@ export const Home = () => {
 
           if (route.name === "Profile") {
             iconName = focused ? "person-outline" : "person";
-          } else if (route.name === "Settings") {
+          } else if (route.name === "Postscrean") {
             iconName = focused ? "apps" : "apps";
-          } else if (route.name === "PostScrean") {
+          } else if (route.name === "Add") {
             iconName = focused ? "add-outline" : "add";
           }
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -38,14 +38,14 @@ export const Home = () => {
     >
       <Tabs.Screen
         options={{ headerShown: false }}
-        name="Settings"
+        name="Postscrean"
         component={PostScrean}
       />
       <Tabs.Screen
         options={{
           headerShown: false,
         }}
-        name="PostScrean"
+        name="Add"
         component={Add}
       />
       <Tabs.Screen
