@@ -1,9 +1,9 @@
-import { View, Text } from "react-native";
+import { Text, View } from "react-native";
 
-export const PostScrean = () => {
+export const Profile = () => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>PostScrean!</Text>
+      <Text>Profile!</Text>
     </View>
   );
 };
