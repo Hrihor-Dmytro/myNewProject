@@ -25,7 +25,7 @@ export const Add = ({ navigation }) => {
     console.log(`postName: ${postName}, postPlace: ${postPlace}`);
     setPostPlace("");
     setPostName("");
-    navigation.navigate("Posts");
+    // navigation.navigate("Posts");
   };
   const keyBoardHide = () => {
     setIsKeyboardShow(false);
@@ -43,7 +43,7 @@ export const Add = ({ navigation }) => {
         <Text style={styles.loadLabel}>Завантажте текст</Text>
         <View style={styles.formBox}>
           <KeyboardAvoidingView
-            behavior={Platform.OS == "ios" ? "padding" : "height"}
+            behavior={Platform.OS == "ios" ? "padding" : "height:100"}
           >
             <TextInput
               value={postName}
@@ -105,28 +105,28 @@ export const Add = ({ navigation }) => {
 const styles = StyleSheet.create({
   postsContainer: {
     flex: 1,
-    paddingHorizontal: 16,
-    paddingVertical: 32,
+    // paddingHorizontal: 16,
+    // paddingVertical: 32,
     backgroundColor: "#fff",
   },
   postPictureTemplate: {
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#F6F6F6",
-    width: "100%",
-    height: 240,
-    borderRadius: 8,
-    borderColor: "#E8E8E8",
-    borderWidth: 1,
-    marginBottom: 8,
+    // alignItems: "center",
+    // justifyContent: "center",
+    // backgroundColor: "#F6F6F6",
+    // width: "100%",
+    // height: 240,
+    // borderRadius: 8,
+    // borderColor: "#E8E8E8",
+    // borderWidth: 1,
+    // marginBottom: 8,
   },
   postPictureItem: {
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff",
-    width: 60,
-    height: 60,
-    borderRadius: 50,
+    // alignItems: "center",
+    // justifyContent: "center",
+    // backgroundColor: "#fff",
+    // width: 60,
+    // height: 60,
+    // borderRadius: 50,
   },
   loadLabel: {
     color: "#BDBDBD",
