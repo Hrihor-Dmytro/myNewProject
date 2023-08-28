@@ -6,10 +6,18 @@ import { useRouter } from "./screens/router";
 import { useState } from "react";
 
 export default function App() {
-  const [isAutch, setIsAutch] = useState(true);
+  const [isAutch, setIsAutch] = useState(false);
 
-  const routing = useRouter(isAutch);
+  const onClickLogin = () => {
+    setIsAutch(true);
+  };
+
+  const routing = useRouter(isAutch, onClickLogin);
   // console.log(routing);
 
-  return <NavigationContainer>{routing}</NavigationContainer>;
+  return (
+    <NavigationContainer onClickLogin={onClickLogin}>
+      {routing}
+    </NavigationContainer>
+  );
 }
