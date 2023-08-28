@@ -20,7 +20,7 @@ const datalogin = {
 
 SplashScreen.preventAutoHideAsync();
 
-export const LoginScrean = ({ navigation, onClickLogin }) => {
+export const LoginScrean = ({ navigation }) => {
   const [data, setData] = useState(datalogin);
   const [isShowKeyboard, setisShowKeyboard] = useState(false);
   const [stylesWidsh, setStyles] = useState(styles.stylesS);
@@ -50,6 +50,7 @@ export const LoginScrean = ({ navigation, onClickLogin }) => {
     setisShowKeyboard(false);
     Keyboard.dismiss();
     navigation.navigate("Home");
+    // onClickLogin(true);
   };
 
   if (!fontsLoaded) {

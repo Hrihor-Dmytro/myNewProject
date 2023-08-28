@@ -8,8 +8,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
 
 export const useRouter = (isAutch, onClickLogin) => {
-  console.log(onClickLogin);
-
   if (!isAutch) {
     return (
       <Stack.Navigator initialRouteName="LoginScrean">
