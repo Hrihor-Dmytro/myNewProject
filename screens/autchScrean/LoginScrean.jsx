@@ -20,7 +20,7 @@ const datalogin = {
 
 SplashScreen.preventAutoHideAsync();
 
-export const LoginScrean = ({ navigation }) => {
+export const LoginScrean = ({ navigation, onClickLogin }) => {
   const [data, setData] = useState(datalogin);
   const [isShowKeyboard, setisShowKeyboard] = useState(false);
   const [stylesWidsh, setStyles] = useState(styles.stylesS);
@@ -28,6 +28,8 @@ export const LoginScrean = ({ navigation }) => {
     "Roboto-Bold": require("../../assets/fonts/Roboto-Bold.ttf"),
     "Roboto-Regular": require("../../assets/fonts/Roboto-Regular.ttf"),
   });
+
+  console.log(onClickLogin);
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {

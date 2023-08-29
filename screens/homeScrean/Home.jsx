@@ -25,7 +25,6 @@ export const Home = () => {
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-
         tabBarActiveTintColor: "tomato",
         tabBarInactiveTintColor: "gray",
         tabBarStyle: [
@@ -37,7 +36,7 @@ export const Home = () => {
       })}
     >
       <Tabs.Screen
-        options={{ headerShown: false }}
+        options={{ headerShown: false, tabBarBadge: 3 }}
         name="Postscrean"
         component={PostScrean}
       />

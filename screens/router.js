@@ -17,6 +17,7 @@ export const useRouter = (isAutch, onClickLogin) => {
           }}
           name="Login"
           component={LoginScrean}
+          initialParams={onClickLogin}
         />
         <Stack.Screen
           options={{

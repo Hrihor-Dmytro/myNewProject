@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#fa82822c",
   },
   innerBox: {
     fontFamily: "Roboto-Regular",
