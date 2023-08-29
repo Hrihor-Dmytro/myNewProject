@@ -12,12 +12,8 @@ export default function App() {
     setIsAutch(true);
   };
 
-  const routing = useRouter(isAutch, onClickLogin);
+  const routing = useRouter(isAutch);
   // console.log(routing);
 
-  return (
-    <NavigationContainer onClickLogin={onClickLogin}>
-      {routing}
-    </NavigationContainer>
-  );
+  return <NavigationContainer>{routing}</NavigationContainer>;
 }

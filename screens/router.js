@@ -7,7 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 
-export const useRouter = (isAutch, onClickLogin) => {
+export const useRouter = (isAutch) => {
   if (!isAutch) {
     return (
       <Stack.Navigator initialRouteName="LoginScrean">
@@ -17,7 +17,7 @@ export const useRouter = (isAutch, onClickLogin) => {
           }}
           name="Login"
           component={LoginScrean}
-          initialParams={onClickLogin}
+          // initialParams={onClickLogin}
         />
         <Stack.Screen
           options={{
